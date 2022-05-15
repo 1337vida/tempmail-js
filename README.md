@@ -15,11 +15,29 @@ git clone https://github.com/1337vida/tempmail-js.git
 ```sh
 npm install
 ```
-3. Customize your config.json
+3. Customize your `config.json`
 4. Run the script!
 ```sh
 npm start
 ```
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## API Information
+All requests need to be authorized via `Authorization` header which contains the api key from `config.json`
+
+Method for all the requests is `GET`
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## API Routes
+Here are all the available routes for tempmail.js:
+
+- `/api/domains`
+- `/api/:inbox`
+- `/api/:inbox/list`
+- `/api/:inbox/latest`
+- `/api/:inbox/:emailId`
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Roadmap
