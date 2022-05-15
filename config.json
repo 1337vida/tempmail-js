@@ -1,0 +1,13 @@
+{
+    "webPort": 8080,
+    "smtpPort": 25,
+    
+    "logRequests": true,
+    "logEmails": true,
+    "deleteEmailAfterRead": false,
+    "apiKey": "EXAMPLE_API_KEY",
+    "domains": [ "" ],
+
+    "mongoDbUrl": "",
+    "mongoCollection": "mails"
+}

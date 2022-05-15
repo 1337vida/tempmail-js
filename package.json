@@ -1,0 +1,33 @@
+{
+  "name": "tempmail",
+  "version": "1.0.0",
+  "description": "A free and easy self-hostable tempmail!",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1337vida/tempmail-js.git"
+  },
+  "keywords": [
+    "tempmail",
+    "nodejs",
+    "mongodb",
+    "smtp"
+  ],
+  "author": "1337vida",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1337vida/tempmail-js/issues"
+  },
+  "homepage": "https://github.com/1337vida/tempmail-js#readme",
+  "dependencies": {
+    "base64id": "^2.0.0",
+    "express": "^4.18.1",
+    "mailparser": "^3.5.0",
+    "mongoose": "^6.3.3",
+    "morgan": "^1.10.0",
+    "smtp-server": "^3.11.0"
+  }
+}
