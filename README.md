@@ -22,6 +22,21 @@ npm start
 ```
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+## Adding a new domain
+To add a new domain, make sure you setup CloudFlare on it, and point DNS records like this:
+
+```
+;; A Records
+mail.example.com.	1	IN	A	0.0.0.0
+
+;; MX Records
+example.com.	1	IN	MX	10 mail.example.com.
+```
+
+![DNS Record Example](https://media.discordapp.net/attachments/895295604501119037/975504791289602159/unknown.png)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ## API Information
 All requests need to be authorized via `Authorization` header which contains the api key from `config.json`
 
