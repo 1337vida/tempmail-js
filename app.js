@@ -20,14 +20,14 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
     res.json({
         "status": 200,
         "app": "tempmail.js"
     });
 });
 
-app.get('/api', (req, res) => {
+app.get("/api", (req, res) => {
     res.send("fatal: failed to process api request");
 });
 
@@ -51,10 +51,10 @@ app.get("/api/:inbox", async (req, res) => {
 
 app.get("/api/:inbox/list", async (req, res) => {
     const inbox = req.params.inbox;
-    if (!inbox) return res.json({ code: 400, error: "email is a required argument" });
+    if (!inbox) return res.status(400).json({ code: 400, error: "email is a required argument" });
 
     const emails = await Email.find({ to: inbox }).sort("-time");
-    if (!emails) return res.json({ code: 404, error: "no emails found" });
+    if (!emails) return res.status(404).json({ code: 404, error: "no emails found" });
     var out = emails.map(email => { return { id: email.id, from: email.from, subject: email.subject } });
 
     res.json({ code: 200, emails: out });
@@ -62,24 +62,29 @@ app.get("/api/:inbox/list", async (req, res) => {
 
 app.get("/api/:inbox/latest", async (req, res) => {
     const inbox = req.params.inbox;
-    if (!inbox) return res.json({ code: 400, error: "email is a required argument" });
+    if (!inbox) return res.status(400).json({ code: 400, error: "email is a required argument" });
 
     const email = await Email.findOne({ to: inbox }).sort("-time");
-    if (!email) return res.json({ code: 404, error: "no emails found" });
-
-    var obj = { from: email.from, text: email.text, id: email.id };
+    if (!email) return res.status(404).json({ code: 404, error: "no emails found" });
     
-    res.json(obj);
+    res.json({
+        code: 200,
+        id: email.id,
+        from: email.from,
+        subject: email.subject,
+        text: email.text
+    });
+
     if (config.deleteEmailAfterRead) email.remove();
 });
 
 app.get("/api/:inbox/:emailId", async (req, res) => {
     const inbox = req.params.inbox;
     const emailId = req.params.emailId;
-    if (!inbox || !emailId) return res.json({ code: 400, error: "inbox and emailId are required arguments" });
+    if (!inbox || !emailId) return res.status(400).json({ code: 400, error: "inbox and emailId are required arguments" });
 
     const email = await Email.findOne({ id: emailId, to: inbox });
-    if (!email) return res.json({ code: 404, error: "no email found" });
+    if (!email) return res.status(404).json({ code: 404, error: "no email found" });
     
     res.json({
         code: 200,
